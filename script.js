@@ -1,23 +1,84 @@
-function getRandomInt (min, max) {
-    min= Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
+let playerScore = 0;
+let compScore = 0;
+let roundWinner = "";
+
+
+function gameEnd() {
+    let bool = playerScore === 5 || compScore === 5;
+    return bool;
+
 }
+
+function getRandomInt(max) {
+   return Math.floor(Math.random() * max);
+}
+
 
 function computerPlay() {
-    let rock = "Rock";
-    let paper = "Paper";
-    let scissor = "Scissor";
-    let random = getRandomInt(1, 4)
+    let random = getRandomInt(3);
 
-    if (random == 1) {
-        return rock;
+    switch (random){
+        case 0:
+            return "Rock";
+            
+        case 1:
+            return "Paper";
+            
+        case 2:
+            return "Scissor";                
+    }          
+}
+
+
+
+
+
+
+function PlayRound(computer,player) {
+    computer = computer.toLowerCase();
+    player = player.toLowerCase();
+   
+    if(computer === player) {
+        //Unentschieden
+        roundWinner = "Unentschieden!"
+        return roundWinner;
+    }
+    else if (computer === "rock" && player === "scissor" || computer === "paper" && player === "rock" || computer === "scissor" && player === "paper") {
+        //Computer gewinnt
+        compScore++;
+        roundWinner = "Computer!";
+        return roundWinner;
+    }
+    else {
+        //Spieler muss gewinnen, da alle anderen Möglichkeiten nicht eintreffen
+        playerScore++;
+        roundWinner = "Spieler!";
+        return roundWinner;
+    }
+}
+
+
+
+
+/* Nicht funktionierende GameLoop :(
+function game() {
+    while (gameEnd === false) {
+        let playerChoice = window.prompt("Stein, Schere oder Papier?");
+        let computerChoice = computerPlay();
+        console.log("Computer: " + computerChoice);
+        console.log("Spieler " + playerChoice);
+        console.log(PlayRound(computerChoice, playerChoice));
+
 
     }
-    else if (random == 2) {
-        return paper;
-    }
-    else {return scissor;}
 
 }
-console.log( computerPlay() );
+
+game();
+*/
+
+let playerChoice = window.prompt("Stein, Schere oder Papier?");
+        let computerChoice = computerPlay();
+        console.log("Computer: " + computerChoice);
+        console.log("Spieler " + playerChoice);
+        console.log(PlayRound(computerChoice, playerChoice));
