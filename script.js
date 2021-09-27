@@ -1,18 +1,30 @@
 let playerScore = 0;
 let compScore = 0;
 let roundWinner = "";
+//let computerChoice = computerPlay(); //ComputerZug
+
+//SpielButtons:
+//Stein Button
+let steinButton = document.getElementById("stein");
+steinButton.addEventListener("click", function(){
+    PlayRound(computerPlay(), "rock");
+});
+//Schere Button
+let schereButton = document.getElementById("schere");
+schereButton.addEventListener("click", function(){
+    PlayRound(computerPlay(), "scissor");
+});
+//Papier Button
+let papierButton = document.getElementById("papier");
+papierButton.addEventListener("click", function(){
+    PlayRound(computerPlay(), "paper");
+});
 
 
-function gameEnd() {
-    let bool = playerScore === 5 || compScore === 5;
-    return bool;
-
-}
 
 function getRandomInt(max) {
    return Math.floor(Math.random() * max);
 }
-
 
 function computerPlay() {
     let random = getRandomInt(3);
@@ -29,56 +41,63 @@ function computerPlay() {
     }          
 }
 
+function addToScoreboard() {
+    const container = document.querySelector("#list");
+
+        const content = document.createElement("p");
+        content.appendChild(document.createTextNode(roundWinner));
+        if (roundWinner == "Spieler!") { //einfärben des Scoreboards
+            content.className = "playerRound";
+        }
+        else if (roundWinner == "Computer!") {
+            content.className = "computerRound";
+        }
+        else {
+            content.className = "tied";
+        }
+        container.prepend(content);
+}
+
+function gameEnd() {
+    if(compScore === 5 || playerScore === 5) {  //H1 Überschrift mit Endstand hinzufügen
+        if(compScore >=5) {
+             gameWinner = "Computer";
+         
+         }
+         else if(playerScore >= 5) {
+             gameWinner = "Spieler";
+         
+         }
+    const h1 = document.createElement("h1");
+    const h2 = document.createElement("h2");
+    
+    h1.appendChild(document.createTextNode("Ende!"));
+    h2.appendChild(document.createTextNode(gameWinner + " gewinnt mit " + compScore + " : " + playerScore));
+    document.body.prepend(h2);
+    document.body.prepend(h1);
+    
+    //Spiel muss noch beendet werden refresh Button?
+    }
+}
 
 
-
-
-
-function PlayRound(computer,player) {
+function PlayRound(computer, player) {
     computer = computer.toLowerCase();
-    player = player.toLowerCase();
    
-    if(computer === player) {
-        //Unentschieden
+   
+    if(computer === player) { //Unentschieden
         roundWinner = "Unentschieden!"
-        return roundWinner;
+        addToScoreboard();  
     }
-    else if (computer === "rock" && player === "scissor" || computer === "paper" && player === "rock" || computer === "scissor" && player === "paper") {
-        //Computer gewinnt
+    else if (computer === "rock" && player === "scissor" || computer === "paper" && player === "rock" || computer === "scissor" && player === "paper") { //Computer gewinnt
         compScore++;
-        roundWinner = "Computer!";
-        return roundWinner;
+        roundWinner = "Computer!";  
+        addToScoreboard();
     }
-    else {
-        //Spieler muss gewinnen, da alle anderen Möglichkeiten nicht eintreffen
+    else { //Spieler gewinnt
         playerScore++;
         roundWinner = "Spieler!";
-        return roundWinner;
+        addToScoreboard();    
     }
+    gameEnd();
 }
-
-
-
-
-/* Nicht funktionierende GameLoop :(
-function game() {
-    while (gameEnd === false) {
-        let playerChoice = window.prompt("Stein, Schere oder Papier?");
-        let computerChoice = computerPlay();
-        console.log("Computer: " + computerChoice);
-        console.log("Spieler " + playerChoice);
-        console.log(PlayRound(computerChoice, playerChoice));
-
-
-    }
-
-}
-
-game();
-*/
-
-let playerChoice = window.prompt("Stein, Schere oder Papier?");
-        let computerChoice = computerPlay();
-        console.log("Computer: " + computerChoice);
-        console.log("Spieler " + playerChoice);
-        console.log(PlayRound(computerChoice, playerChoice));

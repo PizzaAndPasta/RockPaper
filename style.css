@@ -1,0 +1,79 @@
+body{
+    background-color: #2e3440;
+    display: flex;
+    flex-direction: column;
+    color: #d8dee9;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #3b4252;
+    
+}
+
+button{
+    height: 200px;
+    width: 200px;
+    margin: 20px;
+    background-color: #434c5e;
+    border-color: #4c566a;
+    border-radius: 40px;
+    font-size: large;
+    color: #eceff4;
+}
+
+
+#result{
+    margin-left: 300px;
+    margin-right: 300px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size:x-large;
+    overflow: auto;
+
+}
+
+.playerRound {
+    background-color: #a3be8c;
+    
+}
+
+.computerRound {
+    background-color: #bf616a;
+   
+}
+.tied {
+    background-color: #5e81ac;
+  
+}
+
+/*
+TODO
+Beim Buttonclick wird die Wahl des Computers markiert und der Hintergrund
+vom Button div in der entsprechenden Farbe eingeleuchtet 
+(rot-Runde verloren etc)
+
+Oberster Div durchgehend da
+ -mit restart Button
+ -Counter
+ -Gewinnerverkündung
+
+Schriftarten anpassen
+
+Button anpassen
+
+
+
+*/
