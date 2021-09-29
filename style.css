@@ -19,7 +19,28 @@ h2 {
     flex-direction: row;
     justify-content: center;
     background-color: #3b4252;
+    transition: 0.07s;
     
+}
+
+#Spielstand {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#endButton {
+    
+    height: 100px;
+    width: 100px;
+    margin: 20px;
+    background-color: #2e3440;
+    border-color: #81a1c1;
+    border-radius: 20px;
+    font-size: large;
+    color: #eceff4;
 }
 
 button{
@@ -31,6 +52,7 @@ button{
     border-radius: 40px;
     font-size: large;
     color: #eceff4;
+    
 }
 
 
@@ -59,6 +81,15 @@ button{
   
 }
 
+.computerWahl {
+    transform: scale(1.1);
+    border-color: #bf616a;
+    box-shadow: 0 0 1rem #d08770;
+}
+
+.spielerWahl {
+    background-color: #a3be8c;
+}
 /*
 TODO
 Beim Buttonclick wird die Wahl des Computers markiert und der Hintergrund
